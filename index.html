@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit Gym - Vaša putanja do savršene forme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+        <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Zaglavlje sa navigacijom -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-dumbbell"></i>
+                    <h1>Power<span>Fit</span> Gym</h1>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#" class="nav-link active" data-page="home">Početna</a></li>
+                        <li><a href="#" class="nav-link" data-page="pricing">Cenovnik</a></li>
+                        <li><a href="#" class="nav-link" data-page="nutrition">Ishrana</a></li>
+                        <li><a href="#" class="nav-link" data-page="training">Trening</a></li>
+                        <li><a href="#" class="nav-link" data-page="questionnaire">Upitnik</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero sekcija -->
+    <section class="hero">
+        <div class="container">
+            <h2>Transformišite svoje telo, promenite svoj život</h2>
+            <p>PowerFit Gym nudi vrhunsku opremu, personalne trenere i programe prilagođene vašim ciljevima. Pridružite se našoj zajednici danas!</p>
+            <a href="#" class="btn" id="joinBtn">Postani član</a>
+        </div>
+    </section>
+
+    <!-- Glavni sadržaj -->
+    <main class="container">
+        <!-- Početna stranica -->
+        <section id="home" class="page active">
+            <h2 class="page-title">Dobrodošli u PowerFit Gym</h2>
+            <p>Naša teretana je opremljena najsavremenijom opremom i nudi širok spektar usluga kako biste postigli svoje fitness ciljeve. Bez obzira da li ste početnik ili iskusni atletičar, imamo nešto za svakoga.</p>
+            
+            <div class="ad-section">
+                <div class="ad-card">
+                    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Moderna teretana">
+                    <div class="ad-card-content">
+                        <h3>Vrhunska oprema</h3>
+                        <p>Naš prostor od 2000m² sadrži najnoviju opremu vrhunskih brendova za sve vrste treninga.</p>
+                    </div>
+                </div>
+                
+                <div class="ad-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Personalni trener">
+                    <div class="ad-card-content">
+                        <h3>Personalni treneri</h3>
+                        <p>Naši sertifikovani treneri će vam pomoći da postignete maksimalne rezultate uz bezbedan i efikasan trening.</p>
+                    </div>
+                </div>
+                
+                <div class="ad-card">
+                    <img src="photo/Circuits.jpg" alt="Grupni treninzi">
+                    <div class="ad-card-content">
+                        <h3>Grupni treninzi</h3>
+                        <p>Od joge do HIIT treninga, naša raznovrsna ponuda grupnih treninga će vas motivisati i inspirisati.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cenovnik -->
+        <section id="pricing" class="page">
+            <h2 class="page-title">Cenovnik članarina</h2>
+            <p>Izaberite članarinu koja najbolje odgovara vašim potrebama. Sve članarine uključuju korišćenje svih delova teretane, tuševanje i besplatnu inicijalnu procenu kondicije.</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Paket</th>
+                        <th>12 termina</th>
+                        <th>16 termina</th>
+                        <th>31 termin</th>
+                        <th>Personalni trener</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Studentski</strong><br><small>(sa važećim indeksom)</small></td>
+                        <td>4.500 RSD</td>
+                        <td>5.800 RSD</td>
+                        <td>9.900 RSD</td>
+                        <td>+ 3.500 RSD/termin</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Standardni</strong></td>
+                        <td>5.900 RSD</td>
+                        <td>7.200 RSD</td>
+                        <td>12.500 RSD</td>
+                        <td>+ 3.500 RSD/termin</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Premium</strong><br><small>(sve uključeno)</small></td>
+                        <td>7.500 RSD</td>
+                        <td>9.800 RSD</td>
+                        <td>15.900 RSD</td>
+                        <td>+ 2.500 RSD/termin</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Porodični</strong><br><small>(za 2 osobe)</small></td>
+                        <td>9.800 RSD</td>
+                        <td>12.500 RSD</td>
+                        <td>22.900 RSD</td>
+                        <td>+ 3.000 RSD/termin</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px;">
+                <h3>Napomena:</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Sve cene su iskazane u RSD i uključuju PDV</li>
+                    <li>Termini važe 30 dana od dana kupovine</li>
+                    <li>Personalni trener podrazumeva 60-minutni trening</li>
+                    <li>Prvi trening sa personalnim trenerom je besplatan pri kupovini bilo kog paketa</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Ishrana -->
+        <section id="nutrition" class="page">
+            <h2 class="page-title">Zdrava ishrana</h2>
+            <p>Pravilna ishrana je ključna za postizanje fitness ciljeva. Ovdje ćete pronaći zdrave i ukusne recepte koji će vam pomoći da se hranite pravilno.</p>
+            
+            <div class="nutrition-container">
+                <div class="food-image">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Zdrava hrana">
+                </div>
+                
+                <div class="recipes">
+                    <div class="recipe">
+                        <div class="recipe-category">Doručak</div>
+                        <h3>Proteinski omlet sa povrćem</h3>
+                        <p><strong>Sastojci:</strong> 3 jajeta, 1/2 paprike, 1/2 crvenog luka, šampinjoni, sol, biber, maslinovo ulje</p>
+                        <p><strong>Priprema:</strong> Izmutite jaja, dodajte iseckano povrće i začine. Pržite na tavi sa malo maslinovog ulja dok omlet ne dobije zlatnu boju. Poslužite sa svežim paradajzom.</p>
+                        <p><strong>Nutritivne vrednosti:</strong> 320 kcal, 28g proteina, 12g masti, 15g ugljenih hidrata</p>
+                    </div>
+                    
+                    <div class="recipe">
+                        <div class="recipe-category">Ručak</div>
+                        <h3>Pileća prsa sa kineskim kupusom i kinoa</h3>
+                        <p><strong>Sastojci:</strong> 200g pilećih prsa, 100g kineskog kupusa, 1/2 šolje kinoe, 1/2 crvenog luka, soja sos, đumbir, češnjak</p>
+                        <p><strong>Priprema:</strong> Skuvajte kinou po uputstvu. Ispečite pileća prsa na tavi, dodajte povrće i začine. Promešajte sa kinoom i poslužite toplo.</p>
+                        <p><strong>Nutritivne vrednosti:</strong> 450 kcal, 42g proteina, 8g masti, 48g ugljenih hidrata</p>
+                    </div>
+                    
+                    <div class="recipe">
+                        <div class="recipe-category">Užina</div>
+                        <h3>Smoothie sa bobičastim voćem i proteini</h3>
+                        <p><strong>Sastojci:</strong> 1/2 šolje borovnica, 1/2 banana, 1 šolja mladog spanaća, 1 žlica proteinskog praha, 1 šolja bademovog mleka, 1 žlica chia semenki</p>
+                        <p><strong>Priprema:</strong> Sve sastojce stavite u blender i blendajte dok ne dobijete homogenu smesu. Poslužite odmah.</p>
+                        <p><strong>Nutritivne vrednosti:</strong> 280 kcal, 22g proteina, 7g masti, 35g ugljenih hidrata</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trening -->
+        <section id="training" class="page">
+            <h2 class="page-title">Vježbe i tehnike</h2>
+            <p>Pravilna forma i tehnika su ključni za postizanje rezultata i prevenciju povreda. Ovdje možete naučiti kako pravilno izvoditi osnovne vježbe.</p>
+            
+            <div class="exercises">
+                <div class="exercise">
+                    <img src="photo/Cucanj.webp" alt="Čučanj">
+                    <div class="exercise-content">
+                        <div class="exercise-category">Donji deo tela</div>
+                        <h3>Čučanj sa šipkom</h3>
+                        <p><strong>Mišići:</strong> Kvadricepsi, zadnja loža, gluteusi</p>
+                        <p><strong>Izvođenje:</strong> Postavite stopala na širinu ramena. Držite štagu na ramenima iza vrata. Spuštajte zadnjicu prema dole dok su bedra paralelna sa podom, a zatim se podignite nazad. Držite leđa pravo tokom celog pokreta.</p>
+                        <p><strong>Tip:</strong> Gledajte pravo pred sebe i ne savijajte leđa.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <img src="photo/Bench press.webp" alt="Bench press">
+                    <div class="exercise-content">
+                        <div class="exercise-category">Gornji deo tela</div>
+                        <h3>Bench press</h3>
+                        <p><strong>Mišići:</strong> Veliki prsni, triceps, prednji deo deltova</p>
+                        <p><strong>Izvođenje:</strong> Lezite na klupi sa stopalima na podu. Držite štagu na širini ramena. Spustite štagu do donjeg dela prsnog koša, a zatim je podignite nazad u potpuno ispružene ruke. Ne odbijajte šipku od grudi.</p>
+                        <p><strong>Tip:</strong> Držite zadnjicu na klupi tokom celog pokreta.</p>
+                    </div>
+                </div>
+                
+                <div class="exercise">
+                    <img src="photo/Deadlift.webp" alt="Mrtvo dizanje">
+                    <div class="exercise-content">
+                        <div class="exercise-category">Celokupno telo</div>
+                        <h3>Mrtvo dizanje</h3>
+                        <p><strong>Mišići:</strong> Donji deo leđa, gluteusi, zadnja loža, prednja loža, grip</p>
+                        <p><strong>Izvođenje:</strong> Stanite ispred štange sa stopalima na širini ramena. Sagnite se i uhvatite šipku nadgripom. Podignite šipku praveći pokret kukovima, držeći leđa pravo. Kada se uspravite, vratite šipku na pod kontrolisanim pokretom.</p>
+                        <p><strong>Tip:</strong> Nikad ne zaokružujte leđa tokom podizanja.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upitnik -->
+        <section id="questionnaire" class="page">
+            <h2 class="page-title">Fitness upitnik</h2>
+            <p>Popunite upitnik kako bismo vam mogli pomoći da postignete svoje fitness ciljeve. Na osnovu vaših odgovora, naš tim će vam pripremiti personalizovan plan treninga i ishrane.</p>
+            
+            <div class="questionnaire-container">
+                <form id="fitnessForm">
+                    <div class="form-group">
+                        <label for="firstName">Ime *</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Prezime *</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Godine *</label>
+                        <input type="number" id="age" class="form-control" min="16" max="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="height">Visina (cm) *</label>
+                        <input type="number" id="height" class="form-control" min="140" max="220" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="weight">Težina (kg) *</label>
+                        <input type="number" id="weight" class="form-control" min="40" max="200" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Koliko dugo vežbate?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="experience" value="beginner" required> Početnik (manje od 6 mjeseci)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="experience" value="intermediate"> Srednji nivo (6 mjeseci - 2 godine)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="experience" value="advanced"> Napredni (više od 2 godine)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Da li ste fizički aktivni tokom dana (posao, hodanje)?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="activity" value="sedentary" required> Sedentaran (većinu dana sedim)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="activity" value="moderate"> Umereno aktivan (pokretljiv na poslu)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="activity" value="active"> Veoma aktivan (fizički zahtevan posao)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Šta je vaš primarni cilj?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="goal" value="lose_weight"> Mršavljenje
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="goal" value="gain_muscle"> Dobijanje mišićne mase
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="goal" value="get_toned"> Definisanje mišića
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="goal" value="improve_health"> Poboljšanje zdravlja
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="goal" value="increase_strength"> Povećanje snage
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Dodatne napomene (povrede, posebne potrebe, itd.)</label>
+                        <textarea id="notes" class="form-control" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">Pošalji upitnik</button>
+                </form>
+                
+                <div id="resultMessage" class="result-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Podnožje -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PowerFit Gym</h3>
+                    <p>Vodeća teretana koja nudi vrhunske usluge i opremu za sve vaše fitness potrebe.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Fitness ulica 123, Beograd</p>
+                    <p><i class="fas fa-phone"></i> +381 11 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> info@powerfitgym.rs</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Radno vreme</h3>
+                    <p>Ponedeljak - Petak: 06:00 - 23:00</p>
+                    <p>Subota: 08:00 - 21:00</p>
+                    <p>Nedelja: 09:00 - 19:00</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 PowerFit Gym. Sva prava zadržana.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
