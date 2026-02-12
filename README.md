@@ -52,4 +52,18 @@ Make it a full-stack application with database support for saving workouts and g
 
 📸 Screenshots
 
+### Home Page
+![Home Page](screenshots/FitnessPlatform_Home.png)
+
+### Price Section
+![Workout Section](screenshots/FitnessPlatform_Price.png)
+
+### Training Section
+![Workout Section](screenshots/FitnessPlatform_Training.png)
+
+### Food Section
+![Workout Section](screenshots/FitnessPlatform_Food.png)
+
+### Questionaire Section
+![Workout Section](screenshots/FitnessPlatform_questionaire.png)
 
