@@ -48,6 +48,8 @@ Make it a full-stack application with database support for saving workouts and g
 
 🌍 Live Demo
 
-[View Live Demo]()
+[View Live Demo](https://veljkoo2001.github.io/fitness-platform/)
+
+📸 Screenshots
 
 
