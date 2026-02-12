@@ -53,17 +53,27 @@ Make it a full-stack application with database support for saving workouts and g
 📸 Screenshots
 
 ### Home Page
-![Home Page](screenshots/FitnessPlatform_Home.png)
+<p align="center">
+  <img src="screenshots/FitnessPlatform_Home.png" width="700">
+</p>
 
 ### Price Section
-![Workout Section](screenshots/FitnessPlatform_Price.png)
+<p align="center">
+  <img src="screenshots/FitnessPlatform_Price.png" width="700">
+</p>
 
 ### Training Section
-![Workout Section](screenshots/FitnessPlatform_Training.png)
+<p align="center">
+  <img src="screenshots/FitnessPlatform_Training.png" width="700">
+</p>
 
 ### Food Section
-![Workout Section](screenshots/FitnessPlatform_Food.png)
+<p align="center">
+  <img src="screenshots/FitnessPlatform_Food.png" width="700">
+</p>
 
 ### Questionaire Section
-![Workout Section](screenshots/FitnessPlatform_questionaire.png)
+<p align="center">
+  <img src="screenshots/FitnessPlatform_questionaire.png" width="700">
+</p>
 
