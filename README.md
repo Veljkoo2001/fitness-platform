@@ -45,3 +45,9 @@ Add user authentication for personal fitness dashboards
 Include dynamic charts or progress trackers using libraries like Chart.js
 Enhance UI/UX with animations and transitions
 Make it a full-stack application with database support for saving workouts and goals
+
+🌍 Live Demo
+
+[View Live Demo]()
+
+
