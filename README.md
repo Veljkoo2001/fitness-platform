@@ -3,6 +3,11 @@
 Fitness Platform is a frontend-focused web application designed to provide users with an interactive and informative experience for fitness guidance, workout tracking, and healthy lifestyle tips. The project showcases modern web development skills in HTML, CSS, and JavaScript, emphasizing responsive design, interactivity, and user-friendly UI.
 The goal of the project is to create a clean, visually appealing, and fully responsive platform where users can access fitness-related content and interact with forms, features, and exercises, demonstrating frontend development proficiency suitable for a portfolio.
 
+🟢 Project Status
+
+- Frontend: ✅ Fully implemented using HTML, CSS, and JavaScript
+- Backend: 🔄 In progress – currently working on user authentication, database integration (Flask + SQLAlchemy), and API endpoints
+
 🔍 Features
 
 Home Page & About Section – Introduces the platform and its purpose.
