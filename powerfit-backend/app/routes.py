@@ -162,3 +162,82 @@ def register():
 @api.route('/auth/login', methods=['POST'])
 def login():
     """Prijava korisnika"""
+    try:
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+
+        if not email or not password:
+            return jsonify({
+                'success': False,
+                'message': 'Email i lozinka su obavezni'
+            }), 400
+
+        # Pronadji korisnika
+        user = User.query.filter_by(email=email).first()
+
+        if not user or not user.check_password(password):
+            return jsonify({
+                'success': False,
+                'message': 'Pogrešan email ili lozinka'
+            }) , 401
+        
+        if not user.is_active: 
+            return jsonify({
+                'success': False,
+                'message': 'Nalog je deaktiviran'
+            }), 401
+        
+        # Generisi token
+        token = generate_token(user.id)
+
+        return jsonify({
+            'success': True,
+            'message': 'Uspešna prijava',
+            'data': {
+                'user': user.to_dict(),
+                'token': token
+            }
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
+    
+@api.route('/user/profile', methods=['GET'])
+def get_profile():
+    """Vraca profil korisnika (zahteva token)"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header:
+        return jsonify({'success': False, 'message': 'Niste autorizovani'}), 401
+    
+    try:
+        token = auth_header.split(' ')[1]
+        user_id = verify_token(token)
+
+        if not user_id:
+            return jsonify({
+                'success': False,
+                'message': 'Nevažeći token'
+            }), 401
+        
+        user = User.query.get(user_id)
+        if not user:
+            return jsonify({
+                'success': False,
+                'message': 'Korisnik ne postoji'
+            }),404
+        
+        return jsonify({
+            'success': True,
+            'data': user.to_dict()
+        }), 200
+    
+    except Exception as e: 
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
+    
+# ==================== ADMIN RUTE ====================
