@@ -6,7 +6,7 @@
         const fitnessForm = document.getElementById('fitnessForm');
         const resultMessage = document.getElementById('resultMessage');
         const joinBtn = document.getElementById('joinBtn');
-        const API_URL = 'http://localhost:5000/api'
+        const API_URL = 'http://127.0.0.1:5000/api'
         
         // Funkcija za prebacivanje stranica
         function showPage(pageId) {
@@ -107,7 +107,8 @@
                 });
                 
                 const data = await response.json();
-                
+                console.log('Odgovor od servera:', data)
+
                 if (data.success) {
                     // Prikaži poruku sa podacima iz backenda
                     resultMessage.innerHTML = `

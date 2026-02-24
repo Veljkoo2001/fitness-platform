@@ -3,6 +3,10 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from config import Config
 from app.models import db
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 migrate = Migrate()
 
@@ -10,10 +14,14 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    print("DATABASE URI:", app.config['SQLALCHEMY_DATABASE_URI'])
+
     # Inicijalizacija ekstenzija
     db.init_app(app)
     migrate.init_app(app, db)
     CORS(app) # Dozvoli CORS za sve rute
+
+    from app.models import Membership
 
     # Registracija blueprint-a
     from app.routes import api
@@ -22,6 +30,7 @@ def create_app(config_class=Config):
     # Kreiraj tabele ako ne postoje
     with app.app_context():
         db.create_all()
+        print('BAZA JE KREIRANA')
 
         #Dodaj pocetne podatke za clanarine ako ih nema
         if Membership.query.count() == 0:
@@ -31,6 +40,9 @@ def create_app(config_class=Config):
 
 def seed_memberships():
     """Dodaje pocetne pakete clanarina"""
+    
+    from app.models import Membership
+
     memberships = [
         Membership(
             name = 'Studentski',
