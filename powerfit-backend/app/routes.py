@@ -241,3 +241,36 @@ def get_profile():
         }), 500
     
 # ==================== ADMIN RUTE ====================
+
+@api.route('/admin/questionnaires', methods=['GET'])
+def get_all_questionnaires():
+    """Vraca sve upitnike (samo za admina)"""
+    #TODO: Dodati proveru za admina
+    questionnaires = Questionnaire.query.order_by(Questionnaire.created_at.desc()).all()
+    return jsonify({
+        'success': True,
+        'data': [q.to_dict() for q in questionnaires]
+    })
+
+@api.route('/admin/questionnaires/<int:id>/status', methods=['PUT'])
+def update_questionnaire_status(id):
+    """Azurira status upitnika"""
+    try:
+        data = request.json
+        questionnaire = Questionnaire.query.get_or_404(id)
+
+        questionnaire.status = data['status']
+        db.session.commit()
+
+        return jsonify({
+            'success': True,
+            'message': 'Status ažuriran',
+            'data': questionnaire.to_dict()
+        }),200
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500

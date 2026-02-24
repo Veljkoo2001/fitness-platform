@@ -6,6 +6,7 @@
         const fitnessForm = document.getElementById('fitnessForm');
         const resultMessage = document.getElementById('resultMessage');
         const joinBtn = document.getElementById('joinBtn');
+        const API_URL = 'http://localhost:5000/api'
         
         // Funkcija za prebacivanje stranica
         function showPage(pageId) {
@@ -50,7 +51,7 @@
         });
         
         // Obrada forme upitnika
-        fitnessForm.addEventListener('submit', (e) => {
+        fitnessForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             // Prikupljanje podataka iz forme
@@ -86,6 +87,55 @@
                 goalText = "Vaš cilj je " + goalValues.join(", ");
             }
             
+            try {
+                const response = await fetch(`${API_URL}/questionnaire`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        firstName: firstName,
+                        lastName: lastName,
+                        age: parseInt(age),
+                        height: parseFloat(height),
+                        weight: parseFloat(weight),
+                        experience: experience.value,
+                        activityLevel: activity.value,
+                        goals: goalValues,
+                        notes: document.getElementById('notes').value
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Prikaži poruku sa podacima iz backenda
+                    resultMessage.innerHTML = `
+                        <h3>Hvala ${firstName} ${lastName}!</h3>
+                        <p>Vaš BMI iznosi: <strong>${data.data.bmi}</strong> (${data.data.bmi_category})</p>
+                        <p>${data.data.personal_message}</p>
+                        <p>Kontaktiraćemo vas u roku od 24 sata sa personalizovanim planom.</p>
+                    `;
+                    resultMessage.style.backgroundColor = "#d4edda";
+                    resultMessage.style.color = "#155724";
+                    
+                    // Resetuj formu
+                    fitnessForm.reset();
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                resultMessage.innerHTML = `
+                    <p>Došlo je do greške: ${error.message}</p>
+                    <p>Molimo pokušajte ponovo ili nas kontaktirajte telefonom.</p>
+                `;
+                resultMessage.style.backgroundColor = "#f8d7da";
+                resultMessage.style.color = "#721c24";
+            }
+            
+            resultMessage.style.display = "block";
+            resultMessage.scrollIntoView({ behavior: 'smooth' });            
+
             // Izračunavanje BMI
             const heightInMeters = height / 100;
             const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
@@ -113,6 +163,7 @@
             
             // Scroll to result
             resultMessage.scrollIntoView({ behavior: 'smooth' });
+
         });
         
         // Inicijalizacija - pokaži početnu stranicu

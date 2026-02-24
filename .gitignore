@@ -1,0 +1,58 @@
+# =========================
+# 🔐 ENV & SECRET FILES
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# 🐍 PYTHON
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# =========================
+# 🗄 FLASK
+# =========================
+instance/
+.flaskenv
+
+# =========================
+# 📦 DEPENDENCIES CACHE
+# =========================
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =========================
+# 🧪 TEST / COVERAGE
+# =========================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# =========================
+# 🖥 IDE & EDITOR FILES
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =========================
+# 🔥 NODE (ako kasnije dodaš)
+# =========================
+node_modules/
+dist/
+build/
+
