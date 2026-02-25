@@ -4,6 +4,8 @@ from app.models import db, Questionnaire, User, Membership
 from app.utils import get_bmi_category ,calculate_bmi, get_personalized_message, generate_token, verify_token
 from datetime import datetime
 
+import re
+
 api = Blueprint('api', __name__)
 CORS(api) #Dozvoljava zahteve sa frontenda
 
@@ -120,6 +122,23 @@ def register():
     try:
         data = request.json
 
+        # Validacija
+        required_fields = ['firstName', 'lastName', 'email', 'password']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    'success': False,
+                    'message': f'Nedostaje polje: {field}'
+                }), 400
+
+        # Provera email formata
+        email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if not re.match(email_pattern, data['email']):
+            return jsonify({
+                'success': False,
+                'message': 'Email nije ispravnog formata'
+            }), 400
+
         # Provera da li korisnik vec postoji
         exciting = User.query.filter_by(email=data['email']).first()
         if exciting:
@@ -128,6 +147,13 @@ def register():
                 'message': 'Korisnik sa ovim emailom već postoji'
             }), 400
         
+        # Provera lozinke (min 6 karaktera)
+        if len(data['password']) < 6:
+            return jsonify({
+                'success': False,
+                'message': 'Lozinka mora imati najmanje 6 karaktera'
+            }), 400
+
         # Kreiranje novog korisnika
         user = User(
             first_name=data['firstName'],
@@ -156,7 +182,7 @@ def register():
         db.session.rollback()
         return jsonify({
             'success': False,
-            'message': str(e)
+            'message': f'Došlo je do greške: {str(e)}'
         }), 500
 
 @api.route('/auth/login', methods=['POST'])
