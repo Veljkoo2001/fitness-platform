@@ -225,16 +225,18 @@ def login():
                 'token': token
             }
         }), 200
+    
     except Exception as e:
         return jsonify({
             'success': False,
-            'message': str(e)
+            'message': f"Došlo je do greške: {str(e)}"
         }), 500
     
 @api.route('/user/profile', methods=['GET'])
 def get_profile():
     """Vraca profil korisnika (zahteva token)"""
     auth_header = request.headers.get('Authorization')
+
     if not auth_header:
         return jsonify({'success': False, 'message': 'Niste autorizovani'}), 401
     
@@ -300,3 +302,37 @@ def update_questionnaire_status(id):
             'success': False,
             'message': str(e)
         }), 500
+    
+# ==================== POMOĆNE FUNKCIJE ====================
+def get_bmi_category(bmi):
+    """Vraca kategoriju BMI"""
+    if bmi < 18.5:
+        return 'Pothranjenost'
+    elif 18.5 <= bmi < 25:
+        return 'Normalna težina'
+    elif 25 <= bmi < 30:
+        return 'Prekomerna težina'
+    else:
+        return 'Gojaznost'
+    
+def get_personalized_message(bmi, goals):
+    """Generiše personalizovanu poruku na osnovu upitnika"""
+    messages = []
+    
+    if bmi < 18.5:
+        messages.append("Vaš BMI ukazuje na pothranjenost. Fokusiraćemo se na zdrav način povećanja telesne mase.")
+    elif 18.5 <= bmi < 25:
+        messages.append("Vaš BMI je u normalnom rasponu. Naš program će vam pomoći da održite dobru formu i zdravlje.")
+    elif 25 <= bmi < 30:
+        messages.append("Vaš BMI ukazuje na prekomernu težinu. Naš program će vam pomoći da smršate i poboljšate kondiciju.")
+    else:
+        messages.append("Vaš BMI ukazuje na gojaznost. Dobićete detaljan plan za postepeno mršavljenje.")
+
+    if 'lose_weight' in goals and 'gain_muscle' in goals:
+        messages.append("Vaši ciljevi su gubitak težine i dobijanje mišićne mase. Naš program će kombinovati kardio i trening snage.")
+    elif 'lose_weight' in goals:
+        messages.append("Vaš cilj je gubitak težine. Fokusiraćemo se na kardio trening i zdravu ishranu.")
+    elif 'gain_muscle' in goals:
+        messages.append("Vaš cilj je dobijanje mišićne mase. Naš program će se fokusirati na trening snage i adekvatan unos proteina.")
+
+    return " ".join(messages)

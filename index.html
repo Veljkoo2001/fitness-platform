@@ -29,6 +29,7 @@
                         <li><a href="#" class="nav-link" data-page="nutrition">Ishrana</a></li>
                         <li><a href="#" class="nav-link" data-page="training">Trening</a></li>
                         <li><a href="#" class="nav-link" data-page="questionnaire">Upitnik</a></li>
+                        <li><a href="#" class="nav-link" data-page="register">Registracija</a></li>
                     </ul>
                 </nav>
             </div>
@@ -309,7 +310,53 @@
                 <div id="resultMessage" class="result-message"></div>
             </div>
         </section>
+
+        <!-- Registracija -->
+        <section id="register" class="page">
+            <h2 class="page-title">Registracija korisnika</h2>
+            <p>Napravite nalog kako biste mogli da pratite svoje upitnike i dobijate personalizovane planove treninga.</p>
+            
+            <div class="auth-container">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="firstName">Ime *</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Prezime *</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Lozinka *</label>
+                        <input type="password" id="password" class="form-control" required minlength="6">
+                        <small>Minimum 6 karaktera</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon (opciono)</label>
+                        <input type="text" id="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Već imate nalog?</label>
+                        <a href="#" class="btn btn-secondary" style="display: inline-block; margin-left: 10px;">Prijavi se</a>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">Registruj se</button>
+                </form>
+                
+                <div id="resultMessage" class="result-message"></div>
+            </div>
+        </section>
     </main>
+
 
     <!-- Podnožje -->
     <footer>
