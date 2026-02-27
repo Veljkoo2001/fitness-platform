@@ -4,7 +4,7 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const pages = document.querySelectorAll('.page');
 const fitnessForm = document.getElementById('fitnessForm');
-const resultMessage = document.getElementById('resultMessage');
+const questionnaireResult = document.getElementById('questionnaireResult');
 const joinBtn = document.getElementById('joinBtn');
 const registerForm = document.getElementById('registerForm');
 const API_URL = 'http://127.0.0.1:5000/api'
@@ -56,11 +56,11 @@ fitnessForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Prikupljanje podataka iz forme
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const age = document.getElementById('age').value;
-    const height = document.getElementById('height').value;
-    const weight = document.getElementById('weight').value;
+    const firstName = fitnessForm.elements["firstName"].value;
+    const lastName = fitnessForm.elements["lastName"].value;
+    const age = fitnessForm.elements["age"].value;
+    const height = fitnessForm.elements["height"].value;
+    const weight = fitnessForm.elements["weight"].value;
     
     const experience = document.querySelector('input[name="experience"]:checked');
     const activity = document.querySelector('input[name="activity"]:checked');
@@ -68,10 +68,10 @@ fitnessForm.addEventListener('submit', async (e) => {
     
     // Validacija
     if (!experience || !activity || goals.length === 0) {
-        resultMessage.textContent = "Molimo popunite sva obavezna polja.";
-        resultMessage.style.backgroundColor = "#f8d7da";
-        resultMessage.style.color = "#721c24";
-        resultMessage.style.display = "block";
+        questionnaireResult.textContent = "Molimo popunite sva obavezna polja.";
+        questionnaireResult.style.backgroundColor = "#f8d7da";
+        questionnaireResult.style.color = "#721c24";
+        questionnaireResult.style.display = "block";
         return;
     }
     
@@ -112,14 +112,14 @@ fitnessForm.addEventListener('submit', async (e) => {
 
         if (data.success) {
             // Prikaži poruku sa podacima iz backenda
-            resultMessage.innerHTML = `
+            questionnaireResult.innerHTML = `
                 <h3>Hvala ${firstName} ${lastName}!</h3>
                 <p>Vaš BMI iznosi: <strong>${data.data.bmi}</strong> (${data.data.bmi_category})</p>
                 <p>${data.data.personal_message}</p>
                 <p>Kontaktiraćemo vas u roku od 24 sata sa personalizovanim planom.</p>
             `;
-            resultMessage.style.backgroundColor = "#d4edda";
-            resultMessage.style.color = "#155724";
+            questionnaireResult.style.backgroundColor = "#d4edda";
+            questionnaireResult.style.color = "#155724";
             
             // Resetuj formu
             fitnessForm.reset();
@@ -127,44 +127,19 @@ fitnessForm.addEventListener('submit', async (e) => {
             throw new Error(data.message);
         }
     } catch (error) {
-        resultMessage.innerHTML = `
+        questionnaireResult.innerHTML = `
             <p>Došlo je do greške: ${error.message}</p>
             <p>Molimo pokušajte ponovo ili nas kontaktirajte telefonom.</p>
         `;
-        resultMessage.style.backgroundColor = "#f8d7da";
-        resultMessage.style.color = "#721c24";
+        questionnaireResult.style.backgroundColor = "#f8d7da";
+        questionnaireResult.style.color = "#721c24";
     }
     
-    resultMessage.style.display = "block";
-    resultMessage.scrollIntoView({ behavior: 'smooth' });            
-
-    // Izračunavanje BMI
-    const heightInMeters = height / 100;
-    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
-    
-    // Poruka sa rezultatima
-    resultMessage.innerHTML = `
-        <h3>Hvala ${firstName} ${lastName}!</h3>
-        <p>Primili smo vaš upitnik. Na osnovu unetih podataka:</p>
-        <ul style="text-align: left; margin: 10px 0;">
-            <li>Imate ${age} godina</li>
-            <li>Vaš BMI iznosi ${bmi}</li>
-            <li>Nivo iskustva: ${experience.value === 'beginner' ? 'Početnik' : experience.value === 'intermediate' ? 'Srednji nivo' : 'Napredni'}</li>
-            <li>Nivo aktivnosti: ${activity.value === 'sedentary' ? 'Sedentaran' : activity.value === 'moderate' ? 'Umereno aktivan' : 'Veoma aktivan'}</li>
-            <li>${goalText}</li>
-        </ul>
-        <p>Kontaktiraćemo vas u roku od 24 sata sa personalizovanim planom treninga i ishrane.</p>
-    `;
-    
-    resultMessage.style.backgroundColor = "#d4edda";
-    resultMessage.style.color = "#155724";
-    resultMessage.style.display = "block";
+    questionnaireResult.style.display = "block";
+    questionnaireResult.scrollIntoView({ behavior: 'smooth' });         
     
     // Resetovanje forme
     fitnessForm.reset();
-    
-    // Scroll to result
-    resultMessage.scrollIntoView({ behavior: 'smooth' });
 
 });
 
@@ -175,25 +150,24 @@ if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const resultMessage = document.getElementById('resultMessage');
+        const registerResult = document.getElementById('registerResult');
         
         // Prikupljanje podataka
         const data = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-            phone: document.getElementById('phone').value || ''
+            firstName: registerForm.elements["firstName"].value,
+            lastName: registerForm.elements["lastName"].value,
+            email: registerForm.elements["email"].value,
+            password: registerForm.elements["password"].value,
+            phone: registerForm.elements["phone"].value || ''
         };
-        
         // Validacija lozinke
         if (data.password.length < 6) {
-            resultMessage.innerHTML = `
+            registerResult.innerHTML = `
                 <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px;">
                     ❌ Lozinka mora imati najmanje 6 karaktera.
                 </div>
             `;
-            resultMessage.style.display = 'block';
+            registerResult.style.display = 'block';
             return;
         }
         
@@ -213,27 +187,34 @@ if (registerForm) {
                 localStorage.setItem('token', result.data.token);
                 localStorage.setItem('user', JSON.stringify(result.data.user));
                 
-                resultMessage.innerHTML = `
+                registerResult.innerHTML = `
                     <div style="background: #d4edda; color: #155724; padding: 20px; border-radius: 4px;">
                         <h3 style="margin-bottom: 10px;">✅ Uspešna registracija!</h3>
                         <p>Dobrodošli, ${result.data.user.first_name}!</p>
                         <p>Vaš token je sačuvan. Možete nastaviti sa popunjavanjem upitnika.</p>
                         <a href="index.html" class="btn" style="margin-top: 15px; display: inline-block;">Idi na početnu</a>
-                        <a href="questionnaire.html" class="btn btn-secondary" style="margin-top: 15px; margin-left: 10px; display: inline-block;">Popuni upitnik</a>
+                        <a href="#" id="goToQuestionnaire" class="btn btn-secondary" style="margin-top: 15px; margin-left: 10px; display: inline-block;">Popuni upitnik</a>
                     </div>
                 `;
                 
+                const goToQuestionnaireBtn = document.getElementById('goToQuestionnaire');
+
+                goToQuestionnaireBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Sprečava reload stranice
+                    showPage('questionnaire'); // Prikazuje sekciju sa upitnikom
+                });
+
                 // Resetuj formu
                 registerForm.reset();
             } else {
-                resultMessage.innerHTML = `
+                registerResult.innerHTML = `
                     <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px;">
                         ❌ Greška: ${result.message}
                     </div>
                 `;
             }
         } catch (error) {
-            resultMessage.innerHTML = `
+            registerResult.innerHTML = `
                 <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px;">
                     ❌ Greška pri povezivanju sa serverom: ${error.message}<br>
                     Proverite da li je backend pokrenut na portu 5000.
@@ -241,8 +222,8 @@ if (registerForm) {
             `;
         }
         
-        resultMessage.style.display = 'block';
-        resultMessage.scrollIntoView({ behavior: 'smooth' });
+        registerResult.style.display = 'block';
+        registerResult.scrollIntoView({ behavior: 'smooth' });
     });
 }
 
@@ -252,11 +233,11 @@ if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const resultMessage = document.getElementById('resultMessage');
+        const loginResult = document.getElementById('loginResult');
         
         const data = {
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+            email: loginForm.elements["email"].value,
+            password: loginForm.elements["password"].value
         };
         
         try {
@@ -274,7 +255,7 @@ if (loginForm) {
                 localStorage.setItem('token', result.data.token);
                 localStorage.setItem('user', JSON.stringify(result.data.user));
                 
-                resultMessage.innerHTML = `
+                loginResult.innerHTML = `
                     <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px;">
                         ✅ Uspešna prijava! Dobrodošli, ${result.data.user.first_name}!
                     </div>
@@ -285,21 +266,21 @@ if (loginForm) {
                     window.location.href = 'index.html';
                 }, 2000);
             } else {
-                resultMessage.innerHTML = `
+                loginResult.innerHTML = `
                     <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px;">
                         ❌ Greška: ${result.message}
                     </div>
                 `;
             }
         } catch (error) {
-            resultMessage.innerHTML = `
+            loginResult.innerHTML = `
                 <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px;">
                     ❌ Greška pri povezivanju: ${error.message}
                 </div>
             `;
         }
         
-        resultMessage.style.display = 'block';
+        loginResult.style.display = 'block';
     });
 }
 

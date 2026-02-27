@@ -30,6 +30,7 @@
                         <li><a href="#" class="nav-link" data-page="training">Trening</a></li>
                         <li><a href="#" class="nav-link" data-page="questionnaire">Upitnik</a></li>
                         <li><a href="#" class="nav-link" data-page="register">Registracija</a></li>
+                        <li><a href="#" class="nav-link" data-page="login">Prijavi se</a></li>
                     </ul>
                 </nav>
             </div>
@@ -225,27 +226,27 @@
                 <form id="fitnessForm">
                     <div class="form-group">
                         <label for="firstName">Ime *</label>
-                        <input type="text" id="firstName" class="form-control" required>
+                        <input type="text" name="firstName" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="lastName">Prezime *</label>
-                        <input type="text" id="lastName" class="form-control" required>
+                        <input type="text" name="lastName" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="age">Godine *</label>
-                        <input type="number" id="age" class="form-control" min="16" max="100" required>
+                        <input type="number" name="age" class="form-control" min="16" max="100" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="height">Visina (cm) *</label>
-                        <input type="number" id="height" class="form-control" min="140" max="220" required>
+                        <input type="number" name="height" class="form-control" min="140" max="220" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="weight">Težina (kg) *</label>
-                        <input type="number" id="weight" class="form-control" min="40" max="200" required>
+                        <input type="number" name="weight" class="form-control" min="40" max="200" required>
                     </div>
                     
                     <div class="form-group">
@@ -307,7 +308,7 @@
                     <button type="submit" class="btn submit-btn">Pošalji upitnik</button>
                 </form>
                 
-                <div id="resultMessage" class="result-message"></div>
+                <div id="questionnaireResult" class="result-message"></div>
             </div>
         </section>
 
@@ -320,28 +321,28 @@
                 <form id="registerForm">
                     <div class="form-group">
                         <label for="firstName">Ime *</label>
-                        <input type="text" id="firstName" class="form-control" required>
+                        <input type="text" name="firstName" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="lastName">Prezime *</label>
-                        <input type="text" id="lastName" class="form-control" required>
+                        <input type="text" name="lastName" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="password">Lozinka *</label>
-                        <input type="password" id="password" class="form-control" required minlength="6">
+                        <input type="password" name="password" class="form-control" required minlength="6">
                         <small>Minimum 6 karaktera</small>
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">Telefon (opciono)</label>
-                        <input type="text" id="phone" class="form-control">
+                        <input type="text" name="phone" class="form-control">
                     </div>
                     
                     <div class="form-group">
@@ -352,7 +353,34 @@
                     <button type="submit" class="btn submit-btn">Registruj se</button>
                 </form>
                 
-                <div id="resultMessage" class="result-message"></div>
+                <div id="registerResult" class="result-message"></div>
+            </div>
+        </section>
+
+        <!-- Log In-->
+        <section id="login" class="page">
+            <h2 class="page-title">Prijava korisnika</h2>
+            <p>Ako ste već registrovani, prijavite se koristeći svoje podatke.</p>
+            <div class="auth-container">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="unesite@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Lozinka</label>
+                        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">Prijavi se</button>
+                </form>
+
+                <div id="loginResult" class="result-message"></div>
+
+                <div class="register-link">
+                    Nemate nalog? <a href="#" class="btn btn-secondary" style="display: inline-block; margin-left: 10px; margin-top: 10px;">Registrujte se</a>
+                </div>
             </div>
         </section>
     </main>

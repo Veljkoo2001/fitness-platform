@@ -66,7 +66,10 @@ def submit_questionnaire():
 
         # Generisi personalizovanu poruku 
 
-        personal_message = get_personalized_message(questionnaire)
+        personal_message = get_personalized_message(
+            bmi=questionnaire.bmi,
+            goals=questionnaire.goals
+        )
 
         return jsonify({
             'success': True,
